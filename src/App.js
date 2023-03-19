@@ -1,11 +1,7 @@
-import "./App.css";
+import Routes from "./routes/routes";
 
 function App() {
-  return (
-    <div className="App">
-      <h2 className="text-3xl uppercase">hello world</h2>
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;
