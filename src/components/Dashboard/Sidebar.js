@@ -5,7 +5,6 @@ import Logo from "../../images/paper.png";
 function Sidebar() {
   const location = useLocation();
   const pathName = location?.pathname;
-  console.log(pathName);
   return (
     <div className="max-w-sm h-full flex flex-col gap-1 p-2 md:p-4 border-r border-slate-100 shadow overflow-auto">
       <Link to="/" className="flex items-center gap-2 p-2 lg:p-8 ">

@@ -4,7 +4,7 @@ import UserImage from "../../images/user.png";
 
 function Header(props) {
   return (
-    <div className="w-full flex justify-end lg:justify-between items-center gap-4 lg:gap-0  p-4">
+    <div className="w-full flex justify-end lg:justify-between items-center gap-4 lg:gap-0 shadow p-4">
       <form className="w-auto lg:w-1/3 p-3 flex items-center cursor-pointer rounded-xl bg-transparent lg:bg-slate-100 border-2 border-transparent focus-within:border-slate-400 focus-within:text-slate-600">
         <input
           type="text"

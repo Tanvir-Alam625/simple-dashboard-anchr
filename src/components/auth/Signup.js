@@ -46,7 +46,7 @@ function Signup() {
           <form className="my-7">
             {/* Email  */}
             <div className="my-6">
-              <div className="border-2 flex border-slate-200  focus-within:border-slate-400 rounded-xl ">
+              <div className="border-2 shadow flex border-slate-200  focus-within:border-slate-400 rounded-xl ">
                 <div className="pt-5 pb-5 pl-5 pr-3 rounded-l-xl">
                   <FiAtSign className="text-slate-500 h-6 font-medium" />
                 </div>
@@ -63,7 +63,7 @@ function Signup() {
             </div>
             {/* Name  */}
             <div className="my-6">
-              <div className="border-2 flex border-slate-200  focus-within:border-slate-400 rounded-xl ">
+              <div className="border-2 shadow flex border-slate-200  focus-within:border-slate-400 rounded-xl ">
                 <div className="pt-5 pb-5 pl-5 pr-3 rounded-l-xl">
                   <FiMeh className="text-slate-500 h-6 font-medium" />
                 </div>
@@ -80,7 +80,7 @@ function Signup() {
             </div>
             {/* Password  */}
             <div className="my-6">
-              <div className="border-2 flex relative  border-slate-200  focus-within:border-slate-400 rounded-xl ">
+              <div className="border-2 shadow flex relative  border-slate-200  focus-within:border-slate-400 rounded-xl ">
                 <div className="pt-5 pb-5 pl-5 pr-3 rounded-l-xl">
                   <FiLock className="text-slate-500 h-6 font-medium" />
                 </div>
