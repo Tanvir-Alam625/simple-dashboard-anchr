@@ -128,7 +128,7 @@ function Signup() {
           </div>
           <div className="flex justify-center">
             <p className="text-sm font-medium text-slate-400">
-              Already have an account?{" "}
+              Already have an account?
               <Link to="/signIn" className="text-blue-500">
                 Sign In
               </Link>
