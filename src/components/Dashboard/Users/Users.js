@@ -1,7 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getUsers } from "../../../features/users/usersSlice";
 
 import User from "./User";
 function Users() {
+  useEffect(() => {
+    // getUsers();
+    fetch("https://reqres.in/api/users?page=1")
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  }, []);
+  // const users = useSelector((state) => state.users);
+  // console.log(users);
   return (
     <div className="px-2">
       <h2 className="text-xl font-semibold text-slate-800 my-8">Users List </h2>
