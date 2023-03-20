@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../images/paper.png";
 function Header() {
   return (
     <div className="max-w-[1100px] my-7 mx-auto flex justify-between px-1 lg:px-0">
       {/* Logo */}
-      <div className="flex gap-2">
+      <Link to="/" className="flex items-center gap-2">
         <img src={Logo} className="h-[44px] w-[50px] " alt="logo-img" />
         <h2 className="text-slate-800 font-bold text-3xl">Stack</h2>
-      </div>
+      </Link>
       {/* Languages  */}
       <div className="text-slate-400 bg-slate-100 p-4 rounded-xl border-2 border-slate-100 focus-within:border-slate-400">
         <select

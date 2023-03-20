@@ -3,7 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import RequireAuth from "../components/auth/RequireAuth/RequireAuth";
 import Signin from "../components/auth/Signin";
 import Signup from "../components/auth/Signup";
+import Activity from "../components/Dashboard/Acitivity/Activity";
 import Dashboard from "../components/Dashboard/Dashboard";
+import Sales from "../components/Dashboard/Sales/Sales";
+import Users from "../components/Dashboard/Users/Users";
 
 function routes() {
   return (
@@ -15,7 +18,11 @@ function routes() {
             <Dashboard />
           </RequireAuth>
         }
-      />
+      >
+        <Route index element={<Activity />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/sales" element={<Sales />} />
+      </Route>
       <Route path="/signIn" element={<Signin />} />
       <Route path="/signUp" element={<Signup />} />
     </Routes>
