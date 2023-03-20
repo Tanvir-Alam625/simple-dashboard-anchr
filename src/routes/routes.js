@@ -16,8 +16,8 @@ function routes() {
           </RequireAuth>
         }
       />
-      <Route path="./signIn" element={<Signin />} />
-      <Route path="./signUp" element={<Signup />} />
+      <Route path="/signIn" element={<Signin />} />
+      <Route path="/signUp" element={<Signup />} />
     </Routes>
   );
 }
