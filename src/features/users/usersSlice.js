@@ -1,46 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  users: [],
+  users:{},
   isLoading: false,
   isError: false,
   error: "",
 };
-export const getUsers = () =>
-  createAsyncThunk("users/get", async () => {
-    const res = await fetch("https://reqres.in/api/users?page=1");
+export const getUsers = createAsyncThunk("users/getUsers", async (page) => {
+    const res = await fetch(`https://reqres.in/api/users?page=${page}`);
     const data = await res.json();
-    return data.data;
+    return data;
   });
-const usersSlice = () =>
-  createSlice({
+const usersSlice = createSlice({
     name: "users",
+    initialState,
     extraReducers: (builder) => {
       builder
         .addCase(getUsers.pending, (state, action) => {
-          const newState = { ...state, isLoading: true, isError: false };
-          state = newState;
+         state.isError = false;
+         state.isLoading = true;
         })
-        .addCase(getUsers.fulfilled, (state, action) => {
-          const newState = {
-            ...state,
-            user: action.payload,
-            isLoading: false,
-            isError: false,
-          };
-          state = newState;
-        })
-        .addCase(getUsers.rejected, (state, action) => {
-          const newState = {
-            ...state,
-            users: [],
-            isLoading: false,
-            isError: true,
-            error: action.error.message,
-          };
-          state = newState;
-        });
+      builder.addCase(getUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+        state.isLoading = false;
+      })
+      builder.addCase(getUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isLoading = {};
+        state.isError = true;
+        state.error = action.error.message
+      });
     },
   });
 
-export default usersSlice.reducers;
+export default usersSlice.reducer;

@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../features/users/usersSlice";
-
 import User from "./User";
+
 function Users() {
+  const dispatch = useDispatch()
+  const {users} = useSelector((state) => state.users);
   useEffect(() => {
-    // getUsers();
-    fetch("https://reqres.in/api/users?page=1")
-      .then((res) => res.json())
-      .then((result) => console.log(result));
-  }, []);
-  // const users = useSelector((state) => state.users);
-  // console.log(users);
+    dispatch(getUsers(1))
+  }, [dispatch]);
   return (
     <div className="px-2">
       <h2 className="text-xl font-semibold text-slate-800 my-8">Users List </h2>
@@ -31,7 +28,9 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              <User />
+              {
+                users?.data.map((user,index)=><User key={index} user={user} />)
+              }
             </tbody>
           </table>
         </div>
