@@ -27,7 +27,6 @@ function User() {
           Details
         </button>
       </MenuItem>
-      <Divider />
     </Menu>
   );
   return (
@@ -61,27 +60,6 @@ function User() {
             </button>
           </Dropdown>
         </div>
-        {/* <div ref={dropdownRef} className="relative">
-                    <div className="dropdown-toggle">
-                      <button>
-                        <FiMoreVertical
-                          className="h-8 text-slate-700"
-                          strokeWidth={3}
-                        />
-                      </button>
-                    </div>
-                    <div className="dropdown-content min-w-[150px] my-1 shadow rounded-xl z-20 hidden flex-col absolute ">
-                      <button className="p-2 duration-300 ease-in-out transition hover:bg-slate-100 flex w-full gap-2 border-b rounded-t-xl border-slate-300">
-                        Delete
-                      </button>
-                      <button className="p-2 duration-300 ease-in-out transition hover:bg-slate-100 flex w-full gap-2 border-b border-slate-300">
-                        Delete
-                      </button>
-                      <button className="p-2 duration-300 ease-in-out transition hover:bg-slate-100 flex w-full rounded-b-xl  gap-2 ">
-                        Details
-                      </button>
-                    </div>
-                  </div> */}
       </td>
     </tr>
   );
