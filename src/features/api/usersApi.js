@@ -18,7 +18,16 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    userRegister: builder.mutation({
+      query: (data) => ({
+        url: "register",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useUserLoginMutation } = usersApi;
+export const { useGetUsersQuery, useUserLoginMutation, useUserRegisterMutation } = usersApi;

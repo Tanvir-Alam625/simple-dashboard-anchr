@@ -1,13 +1,74 @@
-import React, { useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import GoogleIcon from "../../images/googleIcon.png";
 import AppleIcon from "../../images/appleIcon.png";
 import { FiAtSign, FiMeh, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { useUserRegisterMutation } from "../../features/api/usersApi";
+import { toast } from "react-hot-toast";
+const initialState = {
+  email: "",
+  password: "",
+  name: "",
+};
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "EMAIL":
+      return {
+        ...state,
+        email: action.payload,
+      };
+    case "PASSWORD":
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case "NAME":
+      return {
+        ...state,
+        name: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 function Signup() {
-  const [errorMessages, setErrorMessages] = useState({});
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [errorMessages, setErrorMessages] = useState(false);
   const [passwordHideShow, setPasswordHideShow] = useState(false);
+  const [signInUser, { isError, isLoading, data, isSuccess, status }] =
+    useUserRegisterMutation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("...Waiting", {
+        id: "signUp",
+      });
+    }
+    if (isSuccess && data) {
+      toast.success("success", {
+        id: "signUp",
+      });
+      setErrorMessages(false);
+      localStorage.setItem("sd-token", data?.token);
+      navigate(from, { replace: true });
+    }
+    if (isError) {
+      localStorage.removeItem("sd-token");
+      toast.error(" Failed", {
+        id: "signUp",
+      });
+      setErrorMessages(true);
+    }
+  }, [isLoading, isError, status, data, isSuccess, navigate, from]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    signInUser(state);
+  };
   return (
     <>
       <Header />
@@ -43,7 +104,7 @@ function Signup() {
             </div>
           </div>
           {/* =============Divider End ========= */}
-          <form className="my-7">
+          <form onSubmit={handleSubmit} className="my-7">
             {/* Email  */}
             <div className="my-6">
               <div className="border-2 shadow flex border-slate-200  focus-within:border-slate-400 rounded-xl ">
@@ -53,12 +114,18 @@ function Signup() {
                 <input
                   className="w-full rounded-r-xl px-2 font-medium text-sm outline-none focus:outline-none"
                   type="text"
+                  value={state.email}
+                  onChange={(e) =>
+                    dispatch({ type: "EMAIL", payload: e.target.value })
+                  }
                   placeholder="Your Email"
                   autoComplete="off"
                 />
               </div>
-              {errorMessages?.email ? (
-                <p className="text-red-500 text-sm font-medium my-4"></p>
+              {errorMessages ? (
+                <p className="text-red-500 text-sm font-medium my-4">
+                  Enter the valid email
+                </p>
               ) : null}
             </div>
             {/* Name  */}
@@ -70,13 +137,14 @@ function Signup() {
                 <input
                   className="w-full rounded-r-xl px-2 font-medium text-sm outline-none focus:outline-none"
                   type="text"
+                  value={state.name}
+                  onChange={(e) =>
+                    dispatch({ type: "NAME", payload: e.target.value })
+                  }
                   placeholder="Your Name"
                   autoComplete="off"
                 />
               </div>
-              {errorMessages?.name ? (
-                <p className="text-red-500 text-sm font-medium my-4"></p>
-              ) : null}
             </div>
             {/* Password  */}
             <div className="my-6">
@@ -89,6 +157,10 @@ function Signup() {
                   type={passwordHideShow ? "text" : "password"}
                   placeholder="Create Password"
                   autoComplete="off"
+                  value={state.password}
+                  onChange={(e) =>
+                    dispatch({ type: "PASSWORD", payload: e.target.value })
+                  }
                 />
                 <div
                   onClick={() => setPasswordHideShow(!passwordHideShow)}

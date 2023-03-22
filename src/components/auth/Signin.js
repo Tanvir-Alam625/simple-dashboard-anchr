@@ -6,7 +6,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useUserLoginMutation } from "../../features/api/usersApi";
 import { toast } from "react-hot-toast";
-import { isPending } from "@reduxjs/toolkit";
 
 const initialState = {
   email: "",
@@ -25,12 +24,6 @@ const reducer = (state, action) => {
         ...state,
         password: action.payload,
       };
-    case "REMEMBER":
-      return {
-        ...state,
-        remember: action.payload,
-      };
-
     default:
       return state;
   }
@@ -40,7 +33,6 @@ function Signin() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [errorMessages, setErrorMessages] = useState(false);
   const [passwordHideShow, setPasswordHideShow] = useState(false);
-  const [rememberToken, SetRememberToken] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [signInUser, { isError, isLoading, data, isSuccess, status }] =
@@ -63,12 +55,11 @@ function Signin() {
     if (isError) {
       localStorage.removeItem("sd-token");
       toast.error(" Failed", {
-        duration: 700,
         id: "login",
       });
       setErrorMessages(true);
     }
-  }, [isLoading, isError, status, data, isSuccess, navigate, from,  rememberToken]);
+  }, [isLoading, isError, status, data, isSuccess, navigate, from]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -168,7 +159,6 @@ function Signin() {
               <input
                 type="checkbox"
                 id="terms"
-                onChange={() => SetRememberToken(!rememberToken)}
                 className="h-4 w-4 rounded-xl bg-slate-300 border !border-slate-400 outline-none  focus:outline-none"
               />
               <label htmlFor="terms" className="text-sm text-slate-400">
