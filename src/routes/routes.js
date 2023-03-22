@@ -7,6 +7,7 @@ import Activity from "../components/Dashboard/Acitivity/Activity";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Sales from "../components/Dashboard/Sales/Sales";
 import Users from "../components/Dashboard/Users/Users";
+import NotFound from "../components/NotFound/NotFound";
 
 function routes() {
   return (
@@ -25,6 +26,7 @@ function routes() {
       </Route>
       <Route path="/signIn" element={<Signin />} />
       <Route path="/signUp" element={<Signup />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

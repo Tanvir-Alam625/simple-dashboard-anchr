@@ -8,6 +8,10 @@ import Header from "./Header";
 function Signin() {
   const [errorMessages, setErrorMessages] = useState({});
   const [passwordHideShow, setPasswordHideShow] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(event);
+  }
   return (
     <>
       <Header />
@@ -43,7 +47,7 @@ function Signin() {
             </div>
           </div>
           {/* =============Divider End ========= */}
-          <form className="my-7">
+          <form onSubmit={handleSubmit} className="my-7">
             {/* Email  */}
             <div className="my-6">
               <div className="border-2 shadow flex border-slate-200  focus-within:border-slate-400 rounded-xl ">

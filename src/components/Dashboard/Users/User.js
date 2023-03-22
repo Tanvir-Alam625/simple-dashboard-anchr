@@ -3,7 +3,7 @@ import { FiFilePlus, FiMoreVertical, FiTrash2 } from "react-icons/fi";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import "rc-dropdown/assets/index.css";
-function User({user}) {
+function User({ user }) {
   const menu = (
     <Menu className="!rounded-xl shadow min-w-[150px]">
       <MenuItem key={1}>
@@ -30,21 +30,17 @@ function User({user}) {
             className=" h-16 w-16 rounded-xl"
             alt="user-img"
           />
-          <p className="text-sm text-slate-700 font-semibold">{user?.first_name + ' '+ user?.last_name }</p>
+          <p className="text-sm text-slate-700 font-semibold">
+            {user?.first_name + " " + user?.last_name}
+          </p>
         </div>
       </td>
       <td className="p-2 text-left">
-        <p className="text-sm text-slate-700 font-semibold">
-          {user?.email}
-        </p>
+        <p className="text-sm text-slate-700 font-semibold">{user?.email}</p>
       </td>
       <td className="p-2 text-center">
         <div>
-          <Dropdown
-            trigger={["click"]}
-            overlay={menu}
-            animation="slide-up"
-          >
+          <Dropdown trigger={["click"]} overlay={menu} animation="slide-up">
             <button>
               <FiMoreVertical className="h-8 text-slate-700" strokeWidth={3} />
             </button>
