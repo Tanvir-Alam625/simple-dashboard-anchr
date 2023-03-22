@@ -27,7 +27,10 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    getSingleUser: builder.query({
+      query: (id) => `users/${id}`,
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useUserLoginMutation, useUserRegisterMutation } = usersApi;
+export const { useGetUsersQuery, useUserLoginMutation, useUserRegisterMutation, useGetSingleUserQuery } = usersApi;

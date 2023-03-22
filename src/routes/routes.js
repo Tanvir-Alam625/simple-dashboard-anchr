@@ -8,6 +8,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Sales from "../components/Dashboard/Sales/Sales";
 import Users from "../components/Dashboard/Users/Users";
 import NotFound from "../components/NotFound/NotFound";
+import SingleUser from "../components/SingleUser/SingleUser";
 
 function routes() {
   return (
@@ -26,6 +27,7 @@ function routes() {
       </Route>
       <Route path="/signIn" element={<Signin />} />
       <Route path="/signUp" element={<Signup />} />
+      <Route path="/users/:id" element={<SingleUser />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
