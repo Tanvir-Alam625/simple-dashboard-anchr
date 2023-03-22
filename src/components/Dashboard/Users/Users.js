@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetUsersQuery } from "../../../features/api/usersApi";
 import { getUsers } from "../../../features/users/usersSlice";
 import User from "./User";
 
 function Users() {
-  const dispatch = useDispatch()
-  const {users} = useSelector((state) => state.users);
+  const [page, setPage] = useState(1);
+  const {isError, data, isLoading} = useGetUsersQuery(page)
   useEffect(() => {
-    dispatch(getUsers(1))
-  }, [dispatch]);
+
+  }, []);
   return (
     <div className="px-2">
       <h2 className="text-xl font-semibold text-slate-800 my-8">Users List </h2>
@@ -28,8 +29,18 @@ function Users() {
               </tr>
             </thead>
             <tbody>
+            {
+              isError ? <tr>
+              <td colSpan={4} className="text-center">Something went wrong</td>
+            </tr>:null
+            }
+            {
+              isLoading ? <tr>
+              <td colSpan={4} className="text-center">Loading...</td>
+            </tr>: null
+            }
               {
-                users?.data.map((user,index)=><User key={index} user={user} />)
+                data?.data?.map((user,index)=><User key={index} user={user} />)
               }
             </tbody>
           </table>

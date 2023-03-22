@@ -4,7 +4,6 @@ import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import "rc-dropdown/assets/index.css";
 function User({user}) {
-  console.log(user);
   const menu = (
     <Menu className="!rounded-xl shadow min-w-[150px]">
       <MenuItem key={1}>
