@@ -22,7 +22,7 @@ function User({user}) {
   );
   return (
     <tr>
-      <td className="p-2 text-center">1</td>
+      <td className="p-2 text-center">{user?.id}</td>
       <td className="p-2 text-left">
         <div className="flex items-center gap-5">
           <img
