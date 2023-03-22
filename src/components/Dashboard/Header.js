@@ -4,13 +4,20 @@ import "rc-dropdown/assets/index.css";
 import React from "react";
 import { FiBell, FiLogOut, FiSearch } from "react-icons/fi";
 import UserImage from "../../images/user.png";
+import { useNavigate } from "react-router-dom";
 
 
 function Header() {
+  const navigate = useNavigate()
+  const userLogout = () => {
+    localStorage.removeItem('sd-token');
+    navigate('/signIn');
+
+  }
   const menu = (
     <Menu className="!rounded-xl shadow min-w-[150px]" >
       <MenuItem key={1}>
-        <button  className="p-2 text-sm font-semibold w-full flex justify-start items-center gap-2 rounded-t-xl text-slate-700 hover:bg-slate-100 duration-300 ease-in-out transition cursor-pointer border-b border-slate-300">
+        <button onClick={userLogout}  className="p-2 text-sm font-semibold w-full flex justify-start items-center gap-2 rounded-t-xl text-slate-700 hover:bg-slate-100 duration-300 ease-in-out transition cursor-pointer border-b border-slate-300">
           <FiLogOut className="h-6 text-slate-700" strokeWidth={3} />
           Logout
         </button>
